@@ -16,7 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'img')->hiddenInput() ?>
+    <img src="/web/images/<?= $model->img ?: 'fake.png' ?>" class="img-preview" id="OstroImgPreview"data-toggle="modal" data-target="#OstroModal" onclick="LoadImageManager('testimonial-img')" alt="Нужно выбрать другое изображение...">
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
 

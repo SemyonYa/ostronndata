@@ -19,7 +19,7 @@ class DataController extends Controller
             'corsFilter' => [
                 'class' => \yii\filters\Cors::className(),
                 'cors' => [
-                    'Origin' => ['http://localhost:8080', 'http://localhost:8100'],
+                    'Origin' => ['http://localhost:8080', 'http://localhost:8100', 'http://ostro-nn-data.injini.ru'],
                     'Access-Control-Allow-Origin' => true,
                     'Access-Control-Allow-Credentials' => true,
                     'Access-Control-Request-Method' => ['POST'],

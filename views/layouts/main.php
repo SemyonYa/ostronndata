@@ -77,6 +77,16 @@ AppAsset::register($this);
     </div>
 </footer>
 
+<!-- Триггер кнопка модали-->  
+<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#OstroModal">
+  Launch demo modal
+</button> -->
+
+<!-- Модаль -->  
+<div class="modal fade" id="OstroModal" tabindex="-1" role="dialog" aria-labelledby="OstroModalLabel" data-input-id="-">
+  Загрузка...
+</div>
+
 <?php $this->endBody() ?>
 </body>
 </html>
