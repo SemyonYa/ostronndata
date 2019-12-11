@@ -38,7 +38,8 @@ class ImageController extends Controller
         ];
     }
 
-    public function actionList() {
+    public function actionList()
+    {
         $imgs = MyImage::find()->orderBy('id DESC')->all();
 
         if (Yii::$app->request->isPost) {
@@ -53,7 +54,8 @@ class ImageController extends Controller
             $tmp_names = $_FILES['image']['tmp_name'];
             // var_dump(count($names)); die;
             for ($i = 0; $i < count($names); $i++) {
-                $extention = strtolower(array_pop(explode('.', $names[$i])));
+                $expl_name = explode('.', $names[$i]);
+                $extention = strtolower(array_pop($expl_name));
                 if (!in_array($extention, $allowable_extetions)) {
                     return Json::encode(false);
                 }
@@ -71,7 +73,7 @@ class ImageController extends Controller
                     $image->thumbnail(new Box(800, 800))->save($path . $img_name, ['quality' => 50]);
                 }
                 $image->thumbnail(new Box(300, 300))->save($path . '____' . $img_name, ['quality' => 50]);
-                
+
                 $my_img = new MyImage();
                 $my_img->name = $img_name;
                 $my_img->save();
@@ -83,23 +85,27 @@ class ImageController extends Controller
         return $this->render('list', compact('imgs'));
     }
 
-    public function actionListModal() {
+    public function actionListModal()
+    {
         $this->layout = 'empty';
         $imgs = MyImage::find()->all();
 
         return $this->render('list-modal', compact('imgs'));
     }
 
-    public function actionRemove($id) {
+    public function actionRemove($id)
+    {
         MyImage::findOne($id)->delete();
         return $this->redirect('/image/list');
     }
-    
-    public function actionView($id) {
+
+    public function actionView($id)
+    {
         $img = MyImage::findOne($id);
     }
 
-    public function actionCreate() {
+    public function actionCreate()
+    {
         if (Yii::$app->request->isPost) {
             $allowable_extetions = [
                 'jpg',
@@ -124,7 +130,7 @@ class ImageController extends Controller
                 $image->thumbnail(new Box(800, 800))->save($path . $img_name, ['quality' => 50]);
             }
             $image->thumbnail(new Box(300, 300))->save($path . '____' . $img_name, ['quality' => 50]);
-            
+
             $my_img = new MyImage();
             $my_img->name = $img_name;
             $my_img->save();
